@@ -42,6 +42,7 @@ public class Library {
     public void addBookToStock(Book book) {
         if (checkCapacity()){
             this.collection.add(book);
+            this.addToRegistry(book);
         }
     }
 
@@ -67,8 +68,12 @@ public class Library {
         }
     }
 
-//    public void addToRegistry(Book book) {
-//        int count = this.bookRegistry.containsKey(book.getGenre()) ? bookRegistry.get(book.getGenre()) : 0;
-//        this.bookRegistry.put(book.getGenre(), count + 1);
-//    }
+    public void addToRegistry(Book book) {
+        int count = this.bookRegistry.containsKey(book.getGenre()) ? bookRegistry.get(book.getGenre()) : 0;
+        this.bookRegistry.put(book.getGenre(), count + 1);
+    }
+
+    public int getBooksPerGenre(String key) {
+        return this.bookRegistry.get(key);
+    }
 }
